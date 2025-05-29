@@ -1,4 +1,4 @@
-export const BASEURL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
+export const BASEURL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "";
 export const API_PATHS = {
   AUTH: {
     REGISTER: "/api/auth/register",
