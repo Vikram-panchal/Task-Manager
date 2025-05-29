@@ -8,14 +8,14 @@ const path = require("path");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const taskRoutes = require("./routes/taskRoutes");
-const reportRoutes = require("./routes/reportRoutes");
 
 //Middleware to handel cors
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true
- 
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 const port = process.env.PORT || 3000;
 const __dir = path.resolve();
@@ -24,20 +24,18 @@ connectDB();
 
 app.use(express.json());
 
-
- //Routes
+//Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/tasks", taskRoutes);
-app.use("/api/repots", reportRoutes);
 
-if(process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dir, "../frontend/build")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dir, "../frontend/dist")));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dir, "../frontend", "dist", "index.html"));
+    res.sendFile(path.join(__dir, "../frontend/dist/index.html"));
   });
 }
 
- app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
-  });
+app.listen(port, () => {
+  console.log(`Server is running on port: ${port}`);
+});
