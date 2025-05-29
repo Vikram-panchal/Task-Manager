@@ -18,7 +18,7 @@ app.use(
 );
 
 const port = process.env.PORT || 3000;
-const __dir = path.resolve();
+// const __dirname = path.resolve();
 //Db Connection
 connectDB();
 
@@ -30,9 +30,9 @@ app.use("/api/users", userRoutes);
 app.use("/api/tasks", taskRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dir, "../frontend/dist")));
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dir, "../frontend/dist/index.html"));
+    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
   });
 }
 
