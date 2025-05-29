@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.text-primary, .bg-primary {
+    color: #1368ec;
+}
