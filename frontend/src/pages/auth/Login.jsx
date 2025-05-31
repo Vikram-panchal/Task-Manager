@@ -1,4 +1,3 @@
-
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthLayout from "../../components/layouts/authLayout";
@@ -55,9 +54,11 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-screen mt-10 md:mt-0 flex flex-col items-center justify-center bg-gray-50 px-4">
-      <div className="bg-white rounded-2xl shadow-md p-8 md:p-10 w-full max-w-md">
-        <h3 className="text-2xl font-bold text-center text-gray-800">Welcome Back</h3>
+    <div className="relative min-h-screen flex items-center justify-center px-4">
+      <div className="bg-white rounded-2xl shadow-md p-8 md:p-10 max-w-md w-full z-10">
+        <h3 className="text-2xl font-bold text-center text-gray-800">
+          Welcome Back
+        </h3>
         <p className="text-sm text-center text-gray-600 mt-2 mb-6">
           Please login to your account
         </p>
@@ -84,7 +85,9 @@ const Login = () => {
           <button
             type="submit"
             className={`w-full py-2 rounded-md text-white font-medium transition-colors ${
-              loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+              loading
+                ? "bg-blue-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
             }`}
             disabled={loading}
           >
@@ -93,7 +96,10 @@ const Login = () => {
 
           <p className="text-sm text-gray-700 text-center">
             Don't have an account?{" "}
-            <Link className="text-blue-600 hover:underline font-medium" to="/signup">
+            <Link
+              className="text-blue-600 hover:underline font-medium"
+              to="/signup"
+            >
               Sign Up
             </Link>
           </p>
@@ -104,7 +110,6 @@ const Login = () => {
 };
 
 export default Login;
-
 
 const Spinner = () => (
   <div className="flex justify-center items-center gap-2">

@@ -36,16 +36,13 @@ const TaskDetails = () => {
 
   //handle todo check
   const updateTodoCheckList = async (index) => {
-    // console.log(task);
     let todoCheckList = [...task?.todoCheckList];
-    // console.log(todoCheckList);
     const taskId = id;
     if (todoCheckList && todoCheckList[index]) {
       todoCheckList[index].completed = !todoCheckList[index].completed;
     }
-    // console.log(todoCheckList);
+   
     try {
-      // console.log(todoCheckList);
       const res = await apiService.put(
         API_PATHS.TASKS.UPDATE_TODO_CHECKLIST(taskId),
         {

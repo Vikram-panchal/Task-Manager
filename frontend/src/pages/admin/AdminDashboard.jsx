@@ -22,6 +22,7 @@ const AdminDashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
   const [pieChartData, setPieChartData] = useState(null);
   const [barChartData, setBarChartData] = useState(null);
+  const [greeting, setGreeting] = useState("");
 
   const prepareChartData = (data) => {
     // console.log(data)
@@ -62,9 +63,19 @@ const AdminDashboard = () => {
   const onSeeMore = () => {
     navigate("/admin/tasks");
   };
-
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      setGreeting("Good Morning!");
+    } else if (hour < 18) {
+      setGreeting("Good Afternoon!");
+    } else {
+      setGreeting("Good Evening!");
+    }
+  };
   useEffect(() => {
     getDashboardData();
+    getGreeting();
     return () => {};
   }, []);
   // console.log(dashboardData);
@@ -73,7 +84,9 @@ const AdminDashboard = () => {
       <div className="card my-5">
         <div>
           <div className="col-span-3">
-            <h2 className="text-xl md:text-2xl">Good Morning! {user?.name}</h2>
+            <h2 className="text-xl md:text-2xl">
+              {greeting} {user?.name}
+            </h2>
             <p className="text-xs md:text-[13px] text-gray-400 mt-1.5">
               {moment().format("dddd Do MMM YYYY")}
             </p>
@@ -118,20 +131,20 @@ const AdminDashboard = () => {
               <h5 className="text-lg">Task Distribution</h5>
             </div>
             {/* <div className="w-full h-96"> */}
-              <CustomPieChart data={pieChartData} colors={COLORS} />
+            <CustomPieChart data={pieChartData} colors={COLORS} />
             {/* </div> */}
           </div>
         </div>
-          <div>
-            <div className="card">
-              <div className="flex items-center justify-between">
-                <h5 className="text-lg">Task Priority Levels</h5>
-              </div>
-              {/* <div className="w-full h-96"> */}
-                <CustomBarChart data={barChartData} />
-              {/* </div> */}
+        <div>
+          <div className="card">
+            <div className="flex items-center justify-between">
+              <h5 className="text-lg">Task Priority Levels</h5>
             </div>
+            {/* <div className="w-full h-96"> */}
+            <CustomBarChart data={barChartData} />
+            {/* </div> */}
           </div>
+        </div>
         <div className="md:col-span-2">
           <div className="card">
             <div className="flex items-center justify-between">
